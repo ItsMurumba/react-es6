@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Regular Function</h1>
+
+    <p>The <strong>this</strong> keyword represents different objects depending on how the function was called.</p>
+    <button id="btn">Click Me!</button>
+    <p><strong>this</strong> represents:</p>
+    <p id="demo"></p>
+    <p>See the difference before and after the button is clicked.</p>
+
+    <h1>Arrow Function</h1>
+
+    <p>The <strong>this</strong> keyword represents different objects depending on how the function was called.</p>
+    <button id="btn1">Click Me!</button>
+    <p><strong>this</strong> represents:</p>
+    <p id="demo1"></p>
+    <p>See the difference before and after the button is clicked.</p>
+    <script>
+        class Car {
+            constructor(name) {
+                this.brand = name;
+            }
+
+            /**
+             * Method inside the class
+             */
+            present = () => {
+                return "I have a " + this.brand;
+            }
+        }
+
+        /**
+         * Create objects using the car Class
+         */
+        mycar = new Car("Ford");
+        document.write(mycar.present());
+
+        /**
+         * Class inheritance
+         */
+        class Model extends Car {
+            constructor(name, mod) {
+                super(name);
+                this.model = mod;
+            }
+            show = () => {
+                return this.present() + ", it is a " + this.model;
+            }
+        }
+
+        /**
+         * Create objects using the Model class that has extended the Car class
+         */
+        mycar = new Model("Ford", "Mustag");
+        document.write(mycar.show());
+
+        /**
+         * Arrow Functions
+         */
+        hello = () => {
+            return "Hello World!";
+        }
+
+        //if function has only one statement
+        hello2 = () => "Hello World!";
+
+        //Arrow function with parameters
+        hello3 = (val) => "Hello " + val;
+        hellow4 = val => "Hello " + val;
+
+        /**
+         * this
+         * In regular functions the this keyword represented the object that called the function, which could be the window, the document, a button or whatever.
+         * With arrow functions the this keyword always represents the object that defined the arrow function.
+         */
+        class Header {
+            constructor() {
+                this.color = "Red";
+            }
+            //Regular function
+            changeColor = function () {
+                document.getElementById("demo").innerHTML += this;
+            }
+
+            //Arrow function
+            changeColorArrow = () => {
+                document.getElementById("demo1").innerHTML += this;
+            }
+        }
+
+
+        myHeader = new Header();
+
+        /**
+         * Regular Function
+         */
+        //The window object calls the function
+        window.addEventListener("load", myHeader.changeColor);
+        //A button object calls the function
+        document.getElementById("btn").addEventListener("click", myHeader.changeColor);
+
+        /**
+         * Arrow Function
+         */
+        //The window object calls the function
+        window.addEventListener("load", myHeader.changeColorArrow);
+        //A button object calls the function
+        document.getElementById("btn1").addEventListener("click", myHeader.changeColorArrow);
+
+
+        /**
+         * Variables
+         * 
+         * var
+         * var  has a function scope, not a block scope
+         * If you use var outside of a function, it belongs to the global scope.
+         * If you use var inside of a function, it belongs to that function.
+         * If you use var inside of a block, i.e. a for loop, the variable is still available outside of that block.
+         * 
+         * let
+         * let has a block scope
+         * If you use let inside of a block, i.e. a for loop, the variable is only available inside of that loop.
+         * 
+         * const
+         * const has a block scope
+         * const is a variable that once it has been created, its value can never change.
+         * 
+         */
+    </script>
+</body>
+
+</html>
