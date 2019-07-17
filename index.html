@@ -71,6 +71,20 @@
         hellow4 = val => "Hello " + val;
 
         /**
+         *If the only thing you want to do in a function is a one-line return, 
+         *you can use *implicit return* to greatly simplify your function. 
+         *While using implicit return, you don't need the curly braces or the return keyword. It would look like this. 
+         */
+        const multiplyByTwo = num => num * 2;
+        const printName = (first, last) => console.log(`${first} ${last}`);
+
+        //Using Arrow function in Map. Multiply each number in the array by 2
+        const twodArray = [1,2,3,4].map( num => num * 2);
+
+        //Filter out all numbers that are not even
+        const filteredArray = [1,2,3,4].filter( num => num % 2 == 0);
+
+        /**
          * this
          * In regular functions the this keyword represented the object that called the function, which could be the window, the document, a button or whatever.
          * With arrow functions the this keyword always represents the object that defined the arrow function.
